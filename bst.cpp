@@ -49,6 +49,29 @@ Node *insertionBST(Node *root, int val)
     return root;
 }
 
+Node *searchBST(Node *root, int val)
+{
+    if (root == NULL)
+        return NULL;
+
+    if (root->val == val)
+    {
+        cout << root->val;
+        return root;
+    }
+
+    else if (val < root->val)
+    {
+        cout << root->val << "->";
+        searchBST(root->left, val);
+    }
+    else if (val > root->val)
+    {
+        cout << root->val << "->";
+        searchBST(root->right, val);
+    }
+}
+
 int main(void)
 {
     int n;
@@ -64,6 +87,19 @@ int main(void)
         root = insertionBST(root, val);
     }
     inOrderTraversal(root);
+    cout << endl;
+    
+    int key;
+    cin >> key;
+
+    if(searchBST(root, key) == NULL)
+    {
+        cout << "\n Value does not exits in the BST";
+    }
+    else
+    {
+        cout << "\n Value exits in the BST";
+    }
 }
 
 /*
