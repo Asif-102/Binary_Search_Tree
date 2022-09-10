@@ -63,7 +63,6 @@ int main(void)
 
         root = insertionBST(root, val);
     }
-
     inOrderTraversal(root);
 }
 
