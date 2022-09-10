@@ -6,7 +6,7 @@ input order: <br/>
 3) No Duplicates
 
 <br/>
-Binary Search Tree *time complexity* of find a value <b>O(log<sub>2</sub><sup>n</sup> )</b> 
+Binary Search Tree *time complexity* of find a value <b>O(log n)</b> 
 
 <br/>
 Right Skewed Binary Tree: 
