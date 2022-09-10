@@ -7,3 +7,14 @@ input order: <br/>
 
 <br/>
 Binary Search Tree *time complexity* of find a value <b>O(log<sub>2</sub><sup>n</sup> )</b> 
+
+<br/>
+Right Skewed Binary Tree: 
+<br/>
+/*
+------------1<br/>
+--------------/<br/>
+------------2<br/>
+-----------/<br/>
+---------3
+*/
