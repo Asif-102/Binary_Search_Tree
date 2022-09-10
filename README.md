@@ -18,3 +18,6 @@ Right Skewed Binary Tree:
 -----------/<br/>
 ---------3
 */
+<br/>
+Right Skewed Binary Tree time complexity <b>O(n)</b>
+<br/>
