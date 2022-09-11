@@ -76,7 +76,7 @@ Node *inorderSuccessor(Node *root)
 {
     Node *current = root;
 
-    while(current->left != NULL)
+    while (current->left != NULL)
     {
         current = current->left;
     }
@@ -85,37 +85,43 @@ Node *inorderSuccessor(Node *root)
 
 Node *deletionBST(Node *root, int val)
 {
-    if(val < root->val)
+    if (val < root->val)
     {
         root->left = deletionBST(root->left, val);
     }
-    else if(val > root->val)
+    else if (val > root->val)
     {
         root->right = deletionBST(root->right, val);
     }
     else
     {
-        //Implementation of 3 case
-        if(root->left == NULL) // CASE 1 -> just delete leaf node | CASE 2 -> If Delete node have only one child
+        if (root->left == NULL && root->right == NULL)
+            return NULL;
+        // Implementation of 3 case
+        else if (root->left == NULL) // CASE 1 -> just delete leaf node | CASE 2 -> If Delete node have only one child
         {
             Node *tmp = root->right;
             free(root);
             return tmp;
         }
-        else if(root->right == NULL) // CASE 2 -> If Delete node have only one child
+        else if (root->right == NULL) // CASE 2 -> If Delete node have only one child
         {
             Node *tmp = root->left;
             free(root);
             return tmp;
         }
-        else // CASE 3 -> If delete node have two child
-        {
-            Node *tmp = inorderSuccessor(root->right);
-            root->val = tmp->val;
-            root->right = deletionBST(root->right, tmp->val);
-        }
-        return root;
+        // else // CASE 3 -> If delete node have two child
+        // {
+        //     Node *tmp = inorderSuccessor(root->right);
+        //     root->val = tmp->val;
+        //     root->right = deletionBST(root->right, tmp->val);
+        // }
+        // return root;
+        Node *tmp = inorderSuccessor(root->right);
+        root->val = tmp->val;
+        root->right = deletionBST(root->right, tmp->val);
     }
+    return root;
 }
 
 int main(void)
@@ -138,14 +144,18 @@ int main(void)
     int key;
     cin >> key;
 
-    if(searchBST(root, key) == NULL)
-    {
-        cout << "\n Value does not exits in the BST";
-    }
-    else
-    {
-        cout << "\n Value exits in the BST";
-    }
+    // if(searchBST(root, key) == NULL)
+    // {
+    //     cout << "\n Value does not exits in the BST";
+    // }
+    // else
+    // {
+    //     cout << "\n Value exits in the BST";
+    // }
+
+    root = deletionBST(root, key);
+
+    inOrderTraversal(root);
 }
 
 /*
