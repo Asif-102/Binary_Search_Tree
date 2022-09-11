@@ -72,6 +72,52 @@ Node *searchBST(Node *root, int val)
     }
 }
 
+Node *inorderSuccessor(Node *root)
+{
+    Node *current = root;
+
+    while(current->left != NULL)
+    {
+        current = current->left;
+    }
+    return current;
+}
+
+Node *deletionBST(Node *root, int val)
+{
+    if(val < root->val)
+    {
+        root->left = deletionBST(root->left, val);
+    }
+    else if(val > root->val)
+    {
+        root->right = deletionBST(root->right, val);
+    }
+    else
+    {
+        //Implementation of 3 case
+        if(root->left == NULL) // CASE 1 -> just delete leaf node | CASE 2 -> If Delete node have only one child
+        {
+            Node *tmp = root->right;
+            free(root);
+            return tmp;
+        }
+        else if(root->right == NULL) // CASE 2 -> If Delete node have only one child
+        {
+            Node *tmp = root->left;
+            free(root);
+            return tmp;
+        }
+        else // CASE 3 -> If delete node have two child
+        {
+            Node *tmp = inorderSuccessor(root->right);
+            root->val = tmp->val;
+            root->right = deletionBST(root->right, tmp->val);
+        }
+        return root;
+    }
+}
+
 int main(void)
 {
     int n;
@@ -88,7 +134,7 @@ int main(void)
     }
     inOrderTraversal(root);
     cout << endl;
-    
+
     int key;
     cin >> key;
 
