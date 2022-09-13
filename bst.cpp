@@ -1,4 +1,4 @@
-#include "iostream"
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -124,6 +124,45 @@ Node *deletionBST(Node *root, int val)
     return root;
 }
 
+void zigzagTraversal(Node *root)
+{
+    stack<Node *> currentLevel;
+    stack<Node *> nextLevel;
+
+    bool lefttoRight = true;
+
+    currentLevel.push(root);
+
+    while (!currentLevel.empty())
+    {
+        Node *x = currentLevel.top();
+        currentLevel.pop();
+
+        cout << x->val << " ";
+
+        if (lefttoRight)
+        {
+            if (x->left)
+                nextLevel.push(x->left);
+            if (x->right)
+                nextLevel.push(x->right);
+        }
+        else
+        {
+            if (x->right)
+                nextLevel.push(x->right);
+            if (x->left)
+                nextLevel.push(x->left);
+        }
+
+        if (currentLevel.empty())
+        {
+            lefttoRight = !lefttoRight;
+            swap(currentLevel, nextLevel);
+        }
+    }
+}
+
 int main(void)
 {
     int n;
@@ -141,8 +180,8 @@ int main(void)
     inOrderTraversal(root);
     cout << endl;
 
-    int key;
-    cin >> key;
+    // int key;
+    // cin >> key;
 
     // if(searchBST(root, key) == NULL)
     // {
@@ -153,9 +192,11 @@ int main(void)
     //     cout << "\n Value exits in the BST";
     // }
 
-    root = deletionBST(root, key);
+    // root = deletionBST(root, key);
 
-    inOrderTraversal(root);
+    // inOrderTraversal(root);
+
+    zigzagTraversal(root);
 }
 
 /*
